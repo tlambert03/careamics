@@ -1,5 +1,6 @@
 """Training and validation Lightning data modules."""
 
+from collections import namedtuple
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Literal, Optional, Union
 
@@ -175,6 +176,11 @@ class CAREamicsTrainData(L.LightningDataModule):
             If the data type is `tiff` and the input is neither a Path nor a str.
         """
         super().__init__()
+
+        self.tiled = False
+        self.prediction_config = namedtuple("prediction_config", ["tta_transforms"])(
+            None
+        )
 
         # check input types coherence (no mixed types)
         inputs = [train_data, val_data, train_data_target, val_data_target]
