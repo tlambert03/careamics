@@ -18,7 +18,6 @@ from absl import app, flags
 from ml_collections.config_flags import config_flags
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "../.."))
-print(sys.path)
 
 from careamics.lvae_training.lightning_module import LadderVAELight
 from careamics.lvae_training.data_utils import DataSplitType

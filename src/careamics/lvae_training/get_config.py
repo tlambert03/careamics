@@ -59,7 +59,7 @@ def get_config():
     training.num_workers = 4 # this is in the data config, passed in the dataloader parameters
     training.grad_clip_norm_value = 0.5  # Taken from https://github.com/openai/vdvae/blob/main/hps.py#L38 # this maybe should be in a new trainer_parameters dict in the training config pydantic model
     training.gradient_clip_algorithm = 'value'
-    training.precision = 32
+    training.precision = 16
     data.data_type = DataType.BioSR_MRC
     data.ch1_fname = 'ER/GT_all.mrc'
     data.ch2_fname = 'Microtubules/GT_all.mrc'
