@@ -100,6 +100,7 @@ class Conv_Block(nn.Module):
             bias=bias,
             groups=groups,
         )
+        nn.init.kaiming_normal_(self.conv1.weight)
 
         self.conv2 = getattr(nn, f"Conv{conv_dim}d")(
             out_channels * intermediate_channel_multiplier,
@@ -110,11 +111,17 @@ class Conv_Block(nn.Module):
             bias=bias,
             groups=groups,
         )
+        nn.init.kaiming_normal_(self.conv2.weight)
 
         self.batch_norm1 = getattr(nn, f"BatchNorm{conv_dim}d")(
             out_channels * intermediate_channel_multiplier
         )
+        nn.init.constant_(self.batch_norm1.weight, 1)
+        nn.init.constant_(self.batch_norm1.bias, 0)
+
         self.batch_norm2 = getattr(nn, f"BatchNorm{conv_dim}d")(out_channels)
+        nn.init.constant_(self.batch_norm2.weight, 1)
+        nn.init.constant_(self.batch_norm2.bias, 0)
 
         self.dropout = (
             getattr(nn, f"Dropout{conv_dim}d")(dropout_perc)
