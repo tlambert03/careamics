@@ -61,7 +61,7 @@ dev = [
 ]
 
 # notebooks
-examples = ["jupyter", "careamics-portfolio", "matplotlib"]
+examples = ["jupyter", "careamics-portfolio", "matplotlib", "pillow"]
 
 # loggers
 wandb = ["wandb"]
